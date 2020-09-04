@@ -115,8 +115,8 @@ class GSClassification():
 
         self.y_test_ = [y_test_.tolist()]*len(self.best_estimators)
         
-        fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(14,6))
-        ax1 = plt.subplot(121)
+        fig, ax = plt.subplots(nrows=2, ncols=1, figsize=(7,12))
+        ax1 = plt.subplot(211)
         for model in range(len(self.y_pred)):
             # sort
             data = pd.DataFrame(list(zip(self.y_test_[model],self.y_pred[model])), columns=['y','ypred'])
@@ -159,26 +159,28 @@ class GSClassification():
         
         ax1.plot(x, random_select_proportion_of_positive, '--', color='red', linewidth=1, label='Random', alpha=0.5)
         ax1.plot(x, perfect_select_proportion_of_positive, '--', color='blue', linewidth=1, label='Perfect Model', alpha=0.5)
-        ax1.set_title('Cumulative Accuracy Profile (CAP)')
-        ax1.set_xlabel('False Positive Rate', fontsize=16)
-        ax1.set_ylabel('True Positive Rate', fontsize=16)
+        ax1.set_title('Cumulative Accuracy Profile (CAP)', size=17)
+        ax1.set_xlabel('Fraction of total', fontsize=16)
+        ax1.set_ylabel('Fraction of positive outcomes', fontsize=16)
         legend = ax1.legend(frameon=False, loc='lower right', title='Accuracy Ratio', fontsize=13)
         legend.get_title().set_fontsize('13')
         for legobj in legend.legendHandles:
             legobj.set_linewidth(2.0)
         plt.xticks(size=16)
         plt.yticks(size=16)
+        plt.subplots_adjust(hspace=0.25)
         
-        ax2 = plt.subplot(122)
+        ax2 = plt.subplot(212)
         ax2.bar(self.model_name, self.accuracies, zorder=2, alpha=0.8)
         ax2.grid(alpha=0.3, zorder=0)
         ax2.errorbar(self.model_name, self.accuracies, yerr=self.standar_dev, c='C1', ls='none', zorder=3, alpha=0.8)
         ax2.set_yscale='log'
-        ax2.set_title('Mean accuracy $\pm \sigma$')
+        ax2.set_title('Mean accuracy $\pm \sigma$', size=17)
         plt.xticks(rotation=10, ha='right', size=12)
         plt.yticks(size=16)
         
-        plt.tight_layout()
+        
+        #plt.tight_layout()
         plt.savefig('cap.jpg', dpi=150)
         plt.close()
         

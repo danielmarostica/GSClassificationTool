@@ -46,7 +46,7 @@ X_train, y_train, _, _ = preprocessed_data()
 grid_searcher = GSClassification(classifiers, grid)
 
 # apply grid search
-grid_searcher.apply_grid_search(X_train, y_train, k=30)
+grid_searcher.apply_grid_search(X_train, y_train, k=20)
 
 # a terminal-printed dataframe with ranking and scores
 grid_searcher.show_dataframe()
