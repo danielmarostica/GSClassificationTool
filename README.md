@@ -39,5 +39,5 @@ This software comes with an example from [Kaggle's introductory competition](htt
 
 In order to modify parameters of the grid search, check sklearn's [GridSearchCV guide](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html).
 
-<p align="center"> <img src="cap.jpg" align="left" width="500px"></img> </p>
+<p align="center"> <img src="cap.jpg"></img> </p>
 
